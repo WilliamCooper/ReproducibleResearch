@@ -1,0 +1,50 @@
+---
+title: 'Example 2: Add some R code'
+author: "Al Cooper"
+date: "10/27/2020"
+output: pdf_document
+---
+
+## The "chunk" structure
+
+In R Markdown code chunks are identified by the header \`\`\`{} and the footer \`\`\`. Code between the header and footer will be evaluated and can produce figures and other results that will be included in the final document at an appropriate place. Inside the header brackets, the processing "engine" (here, either r or python) specifies the processing language to use. Other possibilities are also available, but those two will be the focus here. The following is an illustrative example. The header, not printed, is "\`\`\`{r, setup, include = TRUE, echo = TRUE}" and the not-printed trailer is "\`\`\`":
+
+```{r, setup, include=FALSE, echo = TRUE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE)
+library(Ranadu)
+library(reticulate)  ## Needed to mix python and R
+```
+
+In the header, "include" causes anything the code chunk produces to be inserted into the text document and "echo" controls if the code should be shown in the document. 
+```{r, rChunk1, include = TRUE, echo = TRUE, fig.height=4, fig.width=5, results='hold'}
+## This is R code:
+DF <- getNetCDF(setFileName('SOCRATES', 'rf15')) %>% selectTime(50000, 60000) %>% select(Time, ATX, DPXC)
+statsATX <- lapply(WACf, function(f) f(DF$ATX))  ## get some statistical characteristics
+statsDPXC <- lapply(WACf, function(f) f(DF$DPXC))
+nm <- names(statsATX)  ## save the names of the stats, for printing later
+# print ('  parameter    ATX    DPXC')  ## Can print here, but using the table below is better
+# for (i in 1:5) {print(sprintf('%s %f %f', nm[i], statsATX[[i]], statsDPXC[[i]]))}
+ggplotWAC(DF)  ## Construct a plot
+```
+
+The listed R statement generates a plot, and R Markdown places it into the document. Another way to include code results in the text is, for example, to use a = \'r pi\' which prints as "a = `r pi`". Statistics generated in the code chunk can be included in the output, for example as shown in the following table. (See Example2.Rmd to see how this is constructed.)
+
+
+<style type="text/css">
+.table {
+
+    width: 40%;
+
+}
+</style>
+
+parameter  |    ATX    |  DPXC
+---------- | --------- | --------
+`r nm[1]` | `r statsATX[[1]]` | `r statsDPXC[[1]]`
+`r nm[2]` | `r statsATX[[2]]` | `r statsDPXC[[2]]`
+`r nm[3]` | `r statsATX[[3]]` | `r statsDPXC[[3]]`
+`r nm[4]` | `r statsATX[[4]]` | `r statsDPXC[[4]]`
+`r nm[5]` | `r statsATX[[5]]` | `r statsDPXC[[5]]`
+
+Code chunks like the above can do all the necessary data processing and results can then be incorporated into the report. The result is a self-contained record of the project.

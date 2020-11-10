@@ -1,0 +1,83 @@
+---
+title: "Example4"
+author: "Al Cooper"
+date: "10/31/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=TRUE}
+# Specify the url
+# For tomorrow's forecast: (d1 is today; d3 day-after-tomorrow)
+img.pdf <- './noaad2.pdf'
+img.png <- sub('pdf', 'png', img.pdf)
+url <- sprintf ("https://www.wpc.ncep.noaa.gov/noaa/%s", img.pdf)
+# system(sprintf('wget -r %s', url))  ## an alternative to next line
+curl::curl_download(url, img.pdf)
+```
+
+
+
+## Tomorrow's Forecast Map
+
+```{r, echo = TRUE, out.width=640}
+scmd <- sprintf ('convert -density 1280 %s %s', img.pdf, img.png)
+system(scmd)  ## Instead, could have used a "bash" chunk to do this. "system()" 
+              ## waits for the command to finish.
+knitr::include_graphics(img.png)
+```
+
+I like to put something like this is a cron job to download each morning, so
+that the plot is waiting in my personal web server. Other pages can show
+the local forecast, satellite image, etc.
+
+## Using Figures Generated Externally
+
+Unless you include sufficient information to support duplication of the
+figure, this can pose problems for reproducibility. However, sometimes it
+is necessary. Here is an example that uses the EOL/RAF program "ncplot"
+to generate a figure and include it in the document. The code chunk here
+uses the "bash" shell to run ncplot with appropriate arguments including
+a template that defines the plot. The first time, this chunk was executed
+with "eval = TRUE" and the figure that was generated was saved as "ncplot.png".
+Subsequent runs then use "eval = FALSE" to skip the interaction with the user.
+This call provides details regarding how the plot was generated, although it
+requires two runs and manual saving of the plot with a specified name. The
+template used to generate plots like this (here, named "ncplotTemplate") 
+can then be saved with the project
+archive. Of course, regular users of ncplot will know how to reconstruct
+this plot by looking at it, but this documentation better defines its 
+construction for someone not familiar with it.
+
+```{bash, eval = FALSE, echo = TRUE}
+<!-- arguments here specify the template (-s) and time interval (-t) -->
+ncplot /scr/raf_data/SOCRATES/SOCRATESrf15.nc -s ncplotTemplate -t 5:07:00-5:17:00
+```
+
+![](ncplot.png){width=640px}
+
+(Discuss the plot here: For a
+specific time interval, it shows two different temperature sensors that
+are in reasonable agreement.)
+
+Here is what is contained in "ncplotTemplate":
+
+```
+ncplot template file
+Version=4
+PlotType=0
+nPanels=1
+Grid=0, AutoScale=1, AutoTics=1
+Yaxis - Invert=0 0, log=0 0, bounds=-6.000000e+00 1.000000e+00 0.000000e+00 1.000000e+00, xTics=5 2, yTics=8 2
+nSets=2
+VarName=ATF1 Panel#=0, ScaleLoc=0
+VarName=ATH1 Panel#=0, ScaleLoc=0
+xLabel0=UTC
+yLabel0L=°C
+yLabel0R=
+
+```
+With that information, it will be possible for someone else to duplicate the plot.

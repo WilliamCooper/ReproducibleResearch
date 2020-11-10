@@ -1,0 +1,74 @@
+---
+title: 'Example 1: Text Only'
+author: "Al Cooper"
+date: "10/27/2020"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple
+formatting syntax for authoring HTML, PDF, and 
+MS Word documents. For more details on using R Markdown 
+see <http://rmarkdown.rstudio.com>.
+
+In RStudio, click the **Knit** button to generate
+a document that includes both content as well as the 
+output of any embedded R code chunks within the 
+document. From R, use *rmarkdown::render(path_to_file)*.
+
+Here are some more examples of how to use the R Markdown formatting conventions:
+
+### Headers
+
+The number of "#" signs sets the level of the header; here, 3rd level.
+
+### Lists
+
+Bullets:  
+
+* first  [text is "\* first"]
+* second  [text is "\* second"]
+    + second item, first subitem [text is "+ second item ..."]  
+    
+Numbered list:  
+
+1. First item [text is "1. First item"]
+2. Second Item
+    + first subitem of second item
+
+### Format Options:
+
+* **bold** [text is "\*\*bold\*\*"]
+* *italic* [text is "*italic*"]
+* superscript: a^2^; subscript: a~2~. [typed "a\^2\^ and a\~2\~]
+* horizontal rule: ***  [entered on a separate line]
+
+***
+* links: https://www.eol.ucar.edu or [EOL](https://www.eol.ucar.edu)
+    + (the second form links to the same site but the address is not visible. 
+    It is entered as follows:  
+    ```
+    [EOL](https://www.eol.ucar.edu)
+    ```
+* By default, lines are joined together into continuous paragraphs. To force a 
+line break: add two spaces at the end of a line, like this:  
+first line  
+second line  
+
+* images: 
+```
+"![caption](path_to_figure){width=50%}"
+```
+
+![An example.](/home/cooperw/RStudio/ReproducibleResearch/RR-figure/unnamed-chunk-2-1.png){width=40%}
+
+
+

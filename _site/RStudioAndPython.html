@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Al Cooper" />
+
+<meta name="date" content="2020-10-22" />
+
+<title>Using Python in R/RStudio</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Using Python in R/RStudio</h1>
+<h4 class="author">Al Cooper</h4>
+<h4 class="date">10/22/2020</h4>
+
+</div>
+
+
+<div id="reproducible-research" class="section level2">
+<h2>Reproducible Research</h2>
+<p>I recently learned of a very useful approach to documenting data-analysis projects in order to improve “reproducibility” of the results, which enables someone else to repeat, check and extend the results. I have been using R in RStudio for this purpose, with an R package called “knitr” that supports interleaving code segments and text in a single document. The new aspect that I learned recently is that either RStudio or “knitr” also supports Python code, so that enables new ways of combining calculations and documentation. The intent of this note is to illustrate that and provide a template that others might find useful. With the greater emphasis on Python at NCAR, some may find this a good approach to simple documentation tasks. Also, “R Markdown” is much easier to use than LaTeX, used in .Rnw files that I have been using.</p>
+<p>I’m going to construct this note using both R and Python, but that’s not necessary. Either one can be used alone. They can also be used together, passing variables from R code to Python code and from Python code to R code, so the structure is quite flexible. Both use “R Markdown” for the text. This is a very easy language to learn and use, and RStudio in particular provides good help windows to remind users of the basics. RStudio provides additional web-based information at <a href="https://rmarkdown.rstudio.com/lesson-1.html">this URL</a>. However, most of the text can be entered quite simply without much special formatting, so you don’t need the RStudio editor – any editor will work. There is enough flexibility that, as you get used to it, you can expand to include tables, figures, LaTeX equations, superscripts, subscripts, bold or italic formatting, various headers, and much more. In RStudio, when you click the <strong>Knit</strong> button a document will be generated that includes both text and the output of any embedded R code chunks or Python code chunks within the document. I’m using HTML output here but PDF output is also supported; just change the 5th line is this file. Later, I’ll provide some additional information in case you want to run this from an R console without RStudio.</p>
+</div>
+<div id="setup-information" class="section level2">
+<h2>Setup Information</h2>
+<p>If you need to set up Python in the directory from which this will be run, you can follow the instructions provided by RStudio at <a href="https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Configuring-Python-with-RStudio" class="uri">https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Configuring-Python-with-RStudio</a>. Briefly, you can get started by entering these commands in a terminal with working directory where you will place your file. (I did this both in the RStudio directory and in the project directory under that; I don’t know if both are needed.) If you don’t have a version of python3 installed, you should start by installing locally from Miniconda; see <a href="https://docs.conda.io/en/latest/miniconda.html" class="uri">https://docs.conda.io/en/latest/miniconda.html</a>. Then:</p>
+<pre><code>conda init
+pip install virtualenv
+virtualenv python
+conda create --name yourProject python  # where you select &quot;yourProject&quot; -- e.g., WAC
+conda activate yourProject
+source python/bin/activate
+conda install numpy 
+conda install pandas
+conda install matplotlib
+conda install netcdf4</code></pre>
+<p>After installing python, you should place a file named “.Rprofile” in the directory from which you will run R or RStudio. Its contents should be this line: Sys.setenv(RETICULATE_PYTHON = “python/bin/python”) . That will permit R to find the right python version for your set-up. It appears that this only works for python-3.</p>
+<p>You will also need the “knitr”, “reticulate”, and “rmarkdown” R packages, and to run this particular example you will need the “Ranadu” package. If you run this on EOL computers, you can place a file named .Renviron in your home directory and edit it so that it contains the following line:</p>
+<pre><code> R_LIBS=&quot;~cooperw/R/x86_64-redhat-linux-gnu-library/3.2&quot;</code></pre>
+<p>(The library may change as new versions of R are installed on EOL computers; 3.2 is current as of Oct 2020, although R is 3.6.) That will give you access to all the needed R packages.</p>
+</div>
+<div id="examples-plots-in-python-and-r" class="section level2">
+<h2>Examples: Plots in Python and R</h2>
+<p>In R Markdown code chunks are identified by the header ```{} and the footer ```. Code between the header and footer will be evaluated and can produce figures and other results that will be included in the final document at an appropriate place. Inside the header brackets, the processing “engine” (here, either r or python) specifies the processing language to use. Other possibilities are also available, but those two will be the focus here. The following is an illustrative example. The header, not printed, is “```{python, include = TRUE, echo = TRUE}” and the not-printed trailer is “```”:</p>
+<pre class="python"><code>from matplotlib import pyplot as plt
+import numpy as np
+import pandas as pd
+import warnings</code></pre>
+<pre class="python"><code>## Illustrating a simple Python calculation and how it will appear in the output:
+a = 1 + 3 + 18 + 33 + 73 + 37
+print(a)</code></pre>
+<pre><code>## 165</code></pre>
+<p>In the header, “include” causes anything the code chunk produces to be inserted into the text document and “echo” controls if the code should be shown in the document. Another way to include code results in the text is, for example, to use a = 'r py$a' which prints as “a = 165”. Here “py$” refers to a variable in the Python workspace.</p>
+<p>Here is code to make a simple plot using Python and include it in the document:</p>
+<pre class="python"><code>## This is Python code
+from netCDF4 import Dataset, num2date
+ncDF = Dataset(&#39;/scr/raf_data/SOCRATES/SOCRATESrf15.nc&#39;)
+fig = plt.figure(figsize=(5,3.6))
+ax = fig.add_subplot(111)
+plt.plot(ncDF[&quot;Time&quot;], ncDF[&quot;ATX&quot;])
+plt.plot(ncDF[&quot;Time&quot;], ncDF[&quot;DPXC&quot;])
+ax.set_xlabel(&#39;Time [UTC]&#39;)
+ax.set_ylabel(&#39;%s [%s]&#39; % (ncDF[&quot;ATX&quot;].long_name, ncDF[&quot;ATX&quot;].units))
+plt.show()</code></pre>
+<p><img src="RStudioAndPython_files/figure-html/pyChunk2-1.png" width="480" /></p>
+<p>The figure needs some additional processing to convert from the present abscissa (an index) to more useful time labels. To address that and also illustrate “pandas” I’ll put this information into a Pandas DataFrame and repeat the plot:</p>
+<pre class="python"><code>## This is Python code
+VarList = [&#39;ATX&#39;, &#39;DPXC&#39;]  ## Specify the variables to plot
+times = ncDF.variables[&#39;Time&#39;]  ## ncDF was read in the preceding python chunk.
+jd = num2date(times[:], times.units, only_use_cftime_datetimes=False)  ## Define the index
+d = [ncDF.variables[f][:] for f in VarList] ## Load the variables from the netCDF file
+PDF = pd.DataFrame(index=jd)  ## define an empty DataFrame with only an index
+for i in range(len(VarList)):  ## Add the variables to the pandas DataFrame
+    PDF[VarList[i]] = pd.DataFrame(d[i][:], index=jd)
+tunits = times.units
+ax = PDF.plot(figsize=(5,4))
+## Make some cosmetic modifications to the axis labels:
+d0 = ncDF.variables[VarList[0]]  ## Get the attributes for the first variable
+ax.set_ylabel(&#39;%s [%s]&#39; % (d0.long_name, d0.units))
+ax.set_xlabel(&#39;Time [UTC]&#39;)
+plt.show()</code></pre>
+<p><img src="RStudioAndPython_files/figure-html/pyChunk3-1.png" width="480" /></p>
+<pre class="python"><code>PDF2R = PDF
+PDF2R[&#39;Time&#39;] = jd ## Add the &quot;Time&quot; variable for use in R.</code></pre>
+<p>Here the “num2date” function from netCDF4 produces better-labeled times, and the last argument to num2date produces labels with time only instead of date-time.</p>
+<p>Prefer to plot this in R? Now that’s simple: (Note that I had to add a “Time” variable to the Pandas DataFrame in the preceding chunk, so there’s an extra Python chunk to do that. The times will be incorrect unless you add the “units” and “tzone” attributes.)</p>
+<p>Times will still not plot correctly unless some attributes are added to the “Time” variable. These were saved in the previous python code chunk:</p>
+<pre class="r"><code>## This is R code that references the DataFrame from Pandas:
+RDF = py$PDF2R
+attr(RDF$Time, &#39;units&#39;) &lt;- py$tunits
+attr(RDF$Time, &#39;tzone&#39;) &lt;- &#39;UTC&#39;
+plot(RDF$Time, RDF$ATX, type = &#39;l&#39;, col = &#39;blue&#39;)
+lines(RDF$Time, RDF$DPXC, col = &#39;forestgreen&#39;)</code></pre>
+<p><img src="RStudioAndPython_files/figure-html/rChunk2-1.png" width="480" /></p>
+<pre class="r"><code># RDF %&gt;% select(Time, ATX, DPXC)  %&gt;% plotWAC()</code></pre>
+<p>Alternately, use R directly:</p>
+<pre><code>## Loading required package: maps</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre><code>## Loading required package: grid</code></pre>
+<pre><code>## Loading required package: scales</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>## This is R code:
+getNetCDF(setFileName(&#39;SOCRATES&#39;, &#39;rf15&#39;)) %&gt;% select(Time, ATX, DPXC) %&gt;% plotWAC()</code></pre>
+<p><img src="RStudioAndPython_files/figure-html/rChunk3-1.png" width="480" /></p>
+<p>The reason that the ordinate label is different in the last plot is that plotWAC() uses the attributes “long_name” and “units” to construct the label, but those attributes are not preserved in the Pandas DataFrame so you need to add them specifically if desired (e.g., via the “ylab” argument to plotWAC()).</p>
+<p>You can find the R Markdown file that generates this document at this location: <a href="https://drive.google.com/file/d/1VD9xS-iyvYv6XkFTF41blr6V4_bgqPXo/view?usp=sharing" class="uri">https://drive.google.com/file/d/1VD9xS-iyvYv6XkFTF41blr6V4_bgqPXo/view?usp=sharing</a>. You can use that as a template in RStudio without the information that follows, but if you prefer to use an RMarkdown file directly in the R console then the following information may be helpful. You can of course embed calculations in either R or Python. (For a complex example, see our Sensible-Heat-Flux paper, prepared in R Markdown for submission to a journal: <a href="https://github.com/WilliamCooper/SensibleHeatFlux/blob/master/SensibleHeatFluxAMT.Rmd" class="uri">https://github.com/WilliamCooper/SensibleHeatFlux/blob/master/SensibleHeatFluxAMT.Rmd</a>. It includes implementation of the correction procedure as well as the code used to find the parameters in the transfer function.)</p>
+</div>
+<div id="using-rmarkdown-files-in-an-r-console" class="section level2">
+<h2>Using RMarkdown Files in an R Console</h2>
+<p>If you have set up R with the packages listed in the “Setup” section, you should be able to “knit” the .Rmd file in an R console. In a terminal windown, change to the directory containing “RStudioAndPython.Rmd”, enter “R” to start the R console, and then enter “library(rmarkdown)” and “render(‘RStudioAndPython.Rmd’, html_document())” (without the double-quote marks). This should produce an html-format file that you can view in a browser window. The result should be the same as what you are viewing now.</p>
+<pre><code>                          -- End of This Document --
+                          </code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
