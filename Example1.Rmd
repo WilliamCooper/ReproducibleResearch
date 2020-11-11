@@ -3,8 +3,6 @@ title: 'Example 1: Text Only'
 author: "Al Cooper"
 date: "10/27/2020"
 output: html_document
-editor_options: 
-  chunk_output_type: inline
 ---
 
 
