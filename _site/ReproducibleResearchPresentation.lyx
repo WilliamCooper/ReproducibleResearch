@@ -1,0 +1,3536 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamerWAC
+\begin_preamble
+\usetheme{WAC}
+\definecolor{WACcolorA}{rgb}{100,100,94}% ivory
+\definecolor{WACcolorB}{rgb}{80,30,0}% ivory
+\newenvironment<>{summaryblock}[1]{%
+	\begin{actionenv}#2%
+	  \def\insertblocktitle{#1}%
+	  \par%
+	   \mode<presentation>{%\usebeamerfont{block}%
+%       \setbeamercolor{local structure}{parent=example text}}%
+\setbeamercolor{block title example}{bg=orange!85!red,fg=white}}
+	  \usebeamertemplate{block example begin}}
+	{\par%
+	  \usebeamertemplate{block example end}%
+	\end{actionenv}}
+\newenvironment<>{WACblock}[1]{%
+	\begin{actionenv}#2%
+	  \def\insertblocktitle{#1}%
+	  \par%
+	   \mode<presentation>{%\usebeamerfont{block}%
+%       \setbeamercolor{local structure}{parent=example text}}%
+\setbeamercolor{block body example}{use=structure,fg=black,bg=white!70!yellow!10!WACcolorA}
+\setbeamercolor{block title example}{bg=WACcolorB,fg=black}}
+	  \usebeamertemplate{block example begin}}
+	{\par%
+	  \usebeamertemplate{block example end}%
+	\end{actionenv}}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}[default]{}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamercovered{transparent}
+%\setbeamercovered{opaque}
+\setbeamertemplate{enumerate subitem}{(\alph{enumii})}
+
+% or ...
+
+\setbeamercovered{invisible}%transparent
+% or whatever (possibly just delete it)
+%\setbeamertemplate{itemize items}{}%\checkmark
+\setbeamertemplate{itemize subitem}{\tiny\raise1.5pt\hbox{$\blacktriangleright$}}
+\end_preamble
+\use_default_options false
+\begin_modules
+beamer-fragile
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setbeamercolor{normal text}{bg=yellow!10}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This file is a solution template for:
+\end_layout
+
+\begin_layout Itemize
+Talk at a conference/colloquium.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk length is about 20min.
+ 
+\end_layout
+
+\begin_layout Itemize
+Style is ornate.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+In principle, this file can be redistributed and/or modified under the terms
+ of the GNU Public License, version 2.
+ However, this file is supposed to be a template to be modified for your
+ own needs.
+ For this reason, if you use this file as a template and not specifically
+ distribute it as part of a another package/program, the author grants the
+ extra permission to freely copy and modify this file as you see fit and
+ even to delete this copyright notice.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Reproducible Data Analysis
+\end_layout
+
+\begin_layout Author
+Al Cooper
+\end_layout
+
+\begin_layout Date
+Presentation to the EOL Science Group Nov 2020
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vskip1cm
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 1
+use_makebox 0
+width "95col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+* Important Disclaimer: I'm not an expert in the coding aspects that I will
+ discuss.
+ I present this in the hope that you will find this approach interesting
+ and informative.
+ 
+\begin_inset Newline newline
+\end_inset
+
+——————————————
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+* This presentation is available at 
+\begin_inset CommandInset href
+LatexCommand href
+name "this URL"
+target "https://github.com/WilliamCooper/ReproducibleResearch/blob/master/ReproducibleResearchPresentation.pdf"
+literal "false"
+
+\end_inset
+
+:
+\begin_inset Newline newline
+\end_inset
+
+https://github.com/WilliamCooper/ReproducibleResearch/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+blob/master/ReproducibleResearchPresentation.pdf
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vskip0.5cm
+\end_layout
+
+\end_inset
+
+This presentation is saved at 
+\size footnotesize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "this Google-Drive URL: https://drive.google.com/file/d/ 1WLVtfUUJTODWEs1uD7t0Yxu1NFzdTNJC/ view?usp=sharing"
+target "https://drive.google.com/file/d/1WLVtfUUJTODWEs1uD7t0Yxu1NFzdTNJC/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=0.5cm]{institution-logo}{institution-logo-filename}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Outline
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Structuring a talk is a difficult task and the following structure may not
+ be suitable.
+ Here are some rules that apply for this solution: 
+\end_layout
+
+\begin_layout Itemize
+Exactly two or three sections (other than the summary).
+ 
+\end_layout
+
+\begin_layout Itemize
+At *most* three subsections per section.
+ 
+\end_layout
+
+\begin_layout Itemize
+Talk about 30s to 2min per frame.
+ So there should be between about 15 and 30 frames, all told.
+\end_layout
+
+\begin_layout Itemize
+A conference audience is likely to know very little of what you are going
+ to talk about.
+ So *simplify*! 
+\end_layout
+
+\begin_layout Itemize
+In a 20min talk, getting the main ideas across is hard enough.
+ Leave out details, even if it means being less precise than you think necessary.
+ 
+\end_layout
+
+\begin_layout Itemize
+If you omit details that are vital to the proof/implementation, just say
+ so once.
+ Everybody will be happy with that.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+REPRODUCIBLE RESEARCH vs
+\begin_inset Newline newline
+\end_inset
+
+ REPRODUCIBLE ANALYSIS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vskip-1.5cm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+The Distinction
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Broad view:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Scientific progress relies on experiments that test theory.
+\end_layout
+
+\begin_layout Itemize
+The 
+\begin_inset Quotes eld
+\end_inset
+
+gold standard
+\begin_inset Quotes erd
+\end_inset
+
+ is replication of results.
+\end_layout
+
+\begin_layout Itemize
+That's not always possible: 
+\begin_inset Newline newline
+\end_inset
+
+Weather conditions, for example, are unique.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Reproducible Reporting
+\begin_inset Quotes erd
+\end_inset
+
+ is different:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box ovalbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "95col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Verse
+Given the experimental conditions and data:
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+Make the report and analysis reproducible.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+THE ADVANTAGES OF REPRODUCIBLE RESULTS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+beamerdefaultoverlayspecification{<+-|alert@+>}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setbeamercolor{alerted text}{fg=blue}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout SummaryBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\color blue
+Convincing readers and reviewers:
+\color inherit
+ Even if no one replicates the results, knowing that one could increases
+ confidence in the results.
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+Extending results: 
+\color inherit
+Others (or you) may want to apply the analysis to new situations.
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+Meeting journal requirements:
+\color inherit
+ Increasingly, journals encourage or even require this.
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+Addressing questions
+\color inherit
+ that may arise years later that require you or others to return to the
+ project.
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+Assisting collaborators:
+\color inherit
+ Teams working together know the details of each member's contributions
+ and can check their work.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+WHAT DOES 
+\begin_inset Quotes eld
+\end_inset
+
+REPRODUCIBILITY
+\begin_inset Quotes erd
+\end_inset
+
+ INVOLVE?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Box ovalbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The idea is to make it possible for someone else (or you) to repeat the
+ steps leading to a documented result.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Minimum Requirements:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Quotes eld
+\end_inset
+
+Provenance
+\begin_inset Quotes erd
+\end_inset
+
+ of data used in the analysis:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+How were data obtained?
+\end_layout
+
+\begin_layout Enumerate
+Where can data be obtained?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Archive all the relevant files in curated repositories:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+any programs used in data analysis (see, e.g., zenodo)
+\end_layout
+
+\begin_layout Enumerate
+the figures and how they were generated;
+\end_layout
+
+\begin_layout Enumerate
+special modifications to the data files.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Favor 
+\begin_inset Quotes eld
+\end_inset
+
+DOI
+\begin_inset Quotes erd
+\end_inset
+
+ repositories because they will remain unchanged.
+\end_layout
+
+\begin_layout Enumerate
+Where appropriate, provide supplementary guidance in a "Workflow" document.
+\end_layout
+
+\begin_layout Enumerate
+Record the status of the system used (software versions, etc.) 
+\begin_inset Newline newline
+\end_inset
+
+–> [See 
+\begin_inset Quotes eld
+\end_inset
+
+docker
+\begin_inset Quotes erd
+\end_inset
+
+, not discussed further here.]
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+AN EXAMPLE FROM A RECENT PROJECT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vskip0.2cm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\shape smallcaps
+\color blue
+Project:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SensibleHeatFluxTechNote
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\shape smallcaps
+\color blue
+Archive package:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "SensibleHeatFluxTechNote.zip"
+target "https://github.com/WilliamCooper/SensibleHeatFlux/blob/master/SensibleHeatFluxTechNote.zip"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\shape smallcaps
+\color blue
+Contains:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+attachment list below
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\shape smallcaps
+\color blue
+Program:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "SensibleHeatFluxTechNote.Rnw"
+target "https://github.com/WilliamCooper/SensibleHeatFlux/blob/master/SensibleHeatFluxTechNote.Rnw"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\shape smallcaps
+\color blue
+Original Data:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "VOCALS2011"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\shape smallcaps
+\color blue
+Special Data Files:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SensibleHeatFluxTechNote.Rdata
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\shape smallcaps
+\color blue
+Workflow Document:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "WorkflowSensibleHeatFlux.pdf"
+target "https://github.com/WilliamCooper/SensibleHeatFlux/blob/master/WorkflowSensibleHeatFlux.pdf"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\shape smallcaps
+\color blue
+Git:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "https://github.com/WilliamCooper/"
+target "https://github.com/WilliamCooper/SensibleHeatFlux.git"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+attachments:
+\end_layout
+
+\begin_layout Quote
+SensibleHeatFluxTechNote.Rnw
+\begin_inset Newline newline
+\end_inset
+
+SensibleHeatFluxTechNote.pdf
+\begin_inset Newline newline
+\end_inset
+
+WorkflowSensibleHeatFlux.pdf
+\begin_inset Newline newline
+\end_inset
+
+SensibleHeatFluxTechNote.Rdata
+\begin_inset Newline newline
+\end_inset
+
+SensibleHeatFlux.bib
+\begin_inset Newline newline
+\end_inset
+
+chunks/*
+\begin_inset Newline newline
+\end_inset
+
+SessionInfo
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vskip5cm
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+visible<1>{
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "SensibleHeatFlux"
+options "plainnat"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+visible<2>{
+\backslash
+vskip-13.8cm
+\backslash
+hskip5cm
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+fcolorbox{red}{yellow!50}{
+\backslash
+color{red}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 1
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The program is Rnw format, mixing LaTeX and R code.
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+visible<3>{
+\backslash
+vskip-1.6cm
+\backslash
+hskip5cm
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+fcolorbox{red}{yellow!50}{
+\backslash
+color{red}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 1
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+A .zip file contains everything needed to repeat the project.
+ It is saved on GitHub.
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+visible<4>{
+\backslash
+vskip2.9cm
+\backslash
+hskip5.5cm
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+fcolorbox{red}{yellow!50}{
+\backslash
+color{red}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 1
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+A Workflow document contains extra info too detailed for the main document
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+visible<5>{
+\backslash
+vskip-1.cm
+\backslash
+hskip5.5cm
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+fcolorbox{red}{yellow!50}{
+\backslash
+color{red}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 1
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+SessionInfo includes a detailed list of the components (like R packages)
+ and their version numbers.
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Some Helpful Tools
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+TOOLS FOR THIS PURPOSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout SummaryBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+There are many options:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Just archive everything: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+text files
+\end_layout
+
+\begin_layout Enumerate
+programs
+\end_layout
+
+\begin_layout Enumerate
+figures and how they were generated
+\end_layout
+
+\begin_layout Enumerate
+etc.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Use one of the tools developed for this purpose:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Quotes eld
+\end_inset
+
+notebooks
+\begin_inset Quotes erd
+\end_inset
+
+ (iPython, Jupyter, Markdown, ...)
+\end_layout
+
+\begin_layout Enumerate
+MATLAB 
+\begin_inset Quotes eld
+\end_inset
+
+Live Editor
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes eld
+\end_inset
+
+LyX
+\begin_inset Quotes erd
+\end_inset
+
+ – supports inclusion of text and R code in the same file.
+\end_layout
+
+\begin_layout Enumerate
+R Markdown with 
+\begin_inset Quotes eld
+\end_inset
+
+knitr
+\begin_inset Quotes erd
+\end_inset
+
+ – 
+\color blue
+My emphasis today.
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+R Markdown (.Rmd)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+beamerdefaultoverlayspecification{<+-|alert@+>}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setbeamercolor{alerted text}{fg=blue}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Reasons to consider this:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Generating text with R Markdown is mostly intuitive and easily learned,
+ yet flexible.
+ (Much easier than 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+LaTeX
+\end_layout
+
+\end_inset
+
+, which is used in .Rnw files.)
+\end_layout
+
+\begin_layout Enumerate
+You can include program snippets (chunks) intermixed with text, so that
+ the code does appropriate data processing and generates figures and other
+ results.
+\end_layout
+
+\begin_layout Enumerate
+Code can be incorporated from many different programming languages, including
+ R, Python, FORTRAN, C, C++, and many others (including shell commands).
+\end_layout
+
+\begin_layout Enumerate
+While easiest in RStudio, R Markdown only requires R\SpecialChar endofsentence
+ It can be used on EOL
+ computers.
+\end_layout
+
+\begin_layout Enumerate
+Many output formats are supported: HTML, PDF, LaTeX, Word, LibreOffice,
+ and others.
+\end_layout
+
+\begin_layout Enumerate
+Copernicus journals (like Atmospheric Measurement Techniques) accept submissions
+ in .Rmd format.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Examples and Templates
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+ILLUSTRATIONS (all available at URLs at the end)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Some very simple cases:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Using text only.
+\end_layout
+
+\begin_layout Enumerate
+Using an R program 
+\begin_inset Quotes eld
+\end_inset
+
+chunk
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Using a Python program chunk.
+\end_layout
+
+\begin_layout Enumerate
+Plotting a weather map with discussion.
+\end_layout
+
+\end_deeper
+\begin_layout WACBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+More complex cases:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Using both R and Python.
+\end_layout
+
+\begin_layout Enumerate
+Passing variables from R to Python and from Python to R.
+\end_layout
+
+\begin_layout Enumerate
+Incorporating a plot produced by ncplot.
+\end_layout
+
+\begin_layout Enumerate
+A data-quality memo.
+\end_layout
+
+\begin_layout Enumerate
+A journal article.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+THE BARE TEMPLATE FROM RSTUDIO:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+---
+\end_layout
+
+\begin_layout LyX-Code
+title: 'Example 1: Text Only'
+\end_layout
+
+\begin_layout LyX-Code
+author: "Al Cooper"
+\end_layout
+
+\begin_layout LyX-Code
+date: "10/27/2020"
+\end_layout
+
+\begin_layout LyX-Code
+output: html_document
+\end_layout
+
+\begin_layout LyX-Code
+---
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+## R Markdown
+\end_layout
+
+\begin_layout LyX-Code
+This is an R Markdown document.
+ Markdown is a simple
+\end_layout
+
+\begin_layout LyX-Code
+formatting syntax for authoring HTML, PDF, and 
+\end_layout
+
+\begin_layout LyX-Code
+MS Word documents.
+ For more details on using R Markdown 
+\end_layout
+
+\begin_layout LyX-Code
+see <http://rmarkdown.rstudio.com>.
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+In RStudio, click the **Knit** button to generate
+\end_layout
+
+\begin_layout LyX-Code
+a document that includes both content as well as the 
+\end_layout
+
+\begin_layout LyX-Code
+output of any embedded R code chunks within the 
+\end_layout
+
+\begin_layout LyX-Code
+document.
+ From R, use *rmarkdown::render(path_to_file)*.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+THE RESULT: Example 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Note in the output:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The html code is 
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "///run/media/cooperw/DATA/RStudio/ReproducibleResearch/_site/Example1.html"
+type "file:"
+literal "false"
+
+\end_inset
+
+ and the R Markdown file is 
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "///run/media/cooperw/DATA/RStudio/ReproducibleResearch/Example1.Rmd"
+type "file:"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The header is formatted to display at the top of the page.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+##
+\begin_inset Quotes erd
+\end_inset
+
+ produces a second-level heading.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+<link>
+\begin_inset Quotes erd
+\end_inset
+
+ produces a link to a web page
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+**text** causes the text to be bold; *text* italicizes
+\end_layout
+
+\end_deeper
+\begin_layout SummaryBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Additional information in 
+\begin_inset Quotes eld
+\end_inset
+
+Example1.html
+\begin_inset Quotes erd
+\end_inset
+
+:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+To the above text, I added some introductory examples to illustrate formatting
+ options including bold, italic, superscripts, subscripts, headings, ietc.
+\end_layout
+
+\begin_layout Itemize
+That example also includes a simple way to include an existing image into
+ the document.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Example 2: Include R code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Examples of R-code: a setup 
+\begin_inset Quotes eld
+\end_inset
+
+chunk
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Quote
+```{r, setup, include=FALSE, echo = TRUE}
+\end_layout
+
+\begin_layout Quote
+library(knitr)
+\end_layout
+
+\begin_layout Quote
+knitr::opts_chunk$set(echo = TRUE, include = TRUE)
+\end_layout
+
+\begin_layout Quote
+library(Ranadu)
+\end_layout
+
+\begin_layout Quote
+library(reticulate) ## Needed to mix python and R
+\end_layout
+
+\begin_layout Quote
+```
+\end_layout
+
+\begin_layout Itemize
+The sequences of back-tic marks denote the start and end of the code chunk.
+\end_layout
+
+\begin_layout Itemize
+This chunk just loads some R packages that will be used later.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+include = FALSE
+\begin_inset Quotes erd
+\end_inset
+
+ keeps error messages from appearing in the output.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Example 2: Include R code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Examples of R-code: get data and make a plot
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Quote
+```{r, rChunk1, include = TRUE, echo = TRUE}
+\end_layout
+
+\begin_layout Quote
+DF <- getNetCDF(setFileName('SOCRATES', 'rf15')) 
+\end_layout
+
+\begin_layout Quote
+DF <- selectTime(DF, 50000, 60000) 
+\end_layout
+
+\begin_layout Quote
+## get some statistics:
+\end_layout
+
+\begin_layout Quote
+statsATX <- lapply(WACf, function(f) f(DF$ATX)) 
+\end_layout
+
+\begin_layout Quote
+statsDPXC <- lapply(WACf, function(f) f(DF$DPXC))
+\end_layout
+
+\begin_layout Quote
+nm <- names(statsATX) ## save the names 
+\end_layout
+
+\begin_layout Quote
+ggplotWAC(DF[, c('Time', 'ATX', 'DPXC')]) 
+\end_layout
+
+\begin_layout Quote
+```
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+getNetCDF()
+\begin_inset Quotes erd
+\end_inset
+
+ constructs a data.frame from a netCDF file.
+\end_layout
+
+\begin_layout Itemize
+The 
+\begin_inset Quotes eld
+\end_inset
+
+%>%
+\begin_inset Quotes erd
+\end_inset
+
+ pipes results to the next statement, here imposing restrictions on the
+ time interval and variables.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+lapply
+\begin_inset Quotes erd
+\end_inset
+
+ applies several statistical functions like 
+\begin_inset Quotes eld
+\end_inset
+
+mean()
+\begin_inset Quotes erd
+\end_inset
+
+ to the variables, producing named lists.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+ggplotWAC(DF)
+\begin_inset Quotes erd
+\end_inset
+
+ constructs a plot from the data.frame.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Example 3: Using Python code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Setting up to use Python with R Markdown:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+beamerdefaultoverlayspecification{<+-|alert@+>}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setbeamercolor{alerted text}{fg=blue}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+As far as I can tell, R markdown works only with Python3.
+\end_layout
+
+\begin_layout Enumerate
+Instructions for Python set-up are provided by RStudio at this link, so
+ I won't be covering that:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+name "https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Configuring-Python-with-RStudio"
+target "https://support.rstudio.com/hc/en-us/articles/360023654474-Installing-and-Configuring-Python-with-RStudio"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+In addition to standard Python packages (numpy, pandas, matplotlib) you
+ will probably want netcdf4.
+ Confusingly, the package is installed as netcdf4 but you have to import
+ it as netCDF4 (with CDF capitalized).
+\end_layout
+
+\begin_layout Enumerate
+You need the R packages 
+\begin_inset Quotes eld
+\end_inset
+
+reticulate
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+rmarkdown
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+knitr
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+I will be showing some examples on EOL computers, but most of this presentation
+ is prepared on my home computer where I have RStudio available.
+ That is by far the easiest way to do this work.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Example 3, continued: Using Python code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Making a plot using Python:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Include an 
+\begin_inset Quotes eld
+\end_inset
+
+R
+\begin_inset Quotes erd
+\end_inset
+
+ code chunk to load needed libraries (probably just knitr and reticulate)
+\end_layout
+
+\begin_layout Enumerate
+In a Python code chunk, import packages you need to use, here netCDF4 and
+ matplotlib:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Quote
+from matplotlib import pyplot as plt 
+\begin_inset Newline newline
+\end_inset
+
+import netCDF4 as nc
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Add another Python chunk to load the data and generate a plot:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "90col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+## see example3.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Example3 also illustrates use of a 
+\begin_inset Quotes eld
+\end_inset
+
+Pandas
+\begin_inset Quotes erd
+\end_inset
+
+ data.frame and some ways to improve the appearance of the plot.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Example 4: Inserting an externally generated figure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+See Example4.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The example includes a simple download of a web file (a weather map).
+\end_layout
+
+\begin_layout Itemize
+A plot generated externally is also included, with some suggestions regarding
+ how to ensure reproducibility.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+RStudioAndPython.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+This example includes some of the material presented here at a web address
+ that is globally accessible.
+\end_layout
+
+\begin_layout Enumerate
+Some added aspects include:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+some setup guidance
+\end_layout
+
+\begin_layout Enumerate
+how to use R code and Python code together
+\end_layout
+
+\begin_layout Enumerate
+how to transfer variables from R to Python and v.v.
+\end_layout
+
+\begin_layout Enumerate
+making R data.frames from Pandas DataFrames and v.v.
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Two Real-Case Examples
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A DATA-QUALITY MEMO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Finding a functional relationship predicting the cavity pressure in dewpoint
+ hygrometers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+The
+\begin_inset space ~
+\end_inset
+
+problem: During data review, determine if the pressure in the cavity is
+ as expected from past projects.
+\end_layout
+
+\begin_layout Description
+The
+\begin_inset space ~
+\end_inset
+
+approach: Fit data from earlier projects to find equations predicting the
+ measured cavity pressure.
+\end_layout
+
+\begin_layout Description
+The
+\begin_inset space ~
+\end_inset
+
+memo: 
+\begin_inset CommandInset href
+LatexCommand href
+name "See this link"
+target "https://github.com/WilliamCooper/QAtools/blob/master/FitCavityPressure.pdf"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+The
+\begin_inset space ~
+\end_inset
+
+Rmd
+\begin_inset space ~
+\end_inset
+
+file: 
+\begin_inset CommandInset href
+LatexCommand href
+name "See this link"
+target "https://github.com/WilliamCooper/QAtools/blob/master/FitCavityPressure.Rmd"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Note: Results from the fit are incorporated into the text without any need
+ to copy them.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A JOURNAL ARTICLE: Sensible-Heat Flux
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vskip-0.2cm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Components of the Rmd file:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "https://github.com/WilliamCooper/ SensibleHeatFlux/ blob/master/ SensibleHeatFluxAMT.Rmd"
+target "https://github.com/WilliamCooper/SensibleHeatFlux//blob/master/SensibleHeatFluxAMT.Rmd"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+This was prepared for 
+\emph on
+Atmospheric Measurement Techniques 
+\emph default
+and follows a template that they provide.
+\end_layout
+
+\begin_layout Itemize
+Some important components:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The YAML header: (as provided by Copernicus and filled in)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Includes sections for the abstract, acknowledgements and bibliography, which
+ get placed into the text appropriately.
+\end_layout
+
+\begin_layout Enumerate
+Has a section 
+\begin_inset Quotes eld
+\end_inset
+
+availability
+\begin_inset Quotes erd
+\end_inset
+
+ where you can include reproducibility information.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+I have used LaTeX code for equations; there are many other ways to generate
+ these.
+\end_layout
+
+\begin_layout Enumerate
+Processing via rmarkdown::render() produces a .pdf file and also a .tex file
+ suitable for submission to the journal.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+See the draft manuscript here: 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+name "https://github.com/WilliamCooper/ SensibleHeatFlux/ blob/master/ SensibleHeatFluxAMT.pdf"
+target "https://github.com/WilliamCooper/SensibleHeatFlux//blob/master/SensibleHeatFluxAMT.pdf"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+SUMMARY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout SummaryBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Reproducibility in Data Analysis
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Increases
+\begin_inset space ~
+\end_inset
+
+confidence in results.
+\end_layout
+
+\begin_layout Description
+Documents for the future and for extensions.
+\end_layout
+
+\begin_layout Description
+Incorporates
+\begin_inset space ~
+\end_inset
+
+scientific
+\begin_inset space ~
+\end_inset
+
+ethics – a strong defense against research misconduct.
+\end_layout
+
+\begin_layout Description
+Will
+\begin_inset space ~
+\end_inset
+
+be
+\begin_inset space ~
+\end_inset
+
+increasingly
+\begin_inset space ~
+\end_inset
+
+important as studies grow in complexity.
+\end_layout
+
+\begin_layout Description
+Not
+\begin_inset space ~
+\end_inset
+
+just
+\begin_inset space ~
+\end_inset
+
+for
+\begin_inset space ~
+\end_inset
+
+journals:
+\end_layout
+
+\begin_layout Itemize
+Data quality reports.
+\end_layout
+
+\begin_layout Itemize
+Documentation of processing programs and algorithms.
+\end_layout
+
+\begin_layout Itemize
+Technical notes.
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
+\end_deeper
+\begin_layout SummaryBlock
+\begin_inset Box Ovalbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Many new supporting tools are now available.
+\begin_inset Newline newline
+\end_inset
+
+I have emphasized R Markdown, but 
+\begin_inset Newline newline
+\end_inset
+
+there are many other ways to do this.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vskip2in
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+END OF THIS PRESENTATION
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Here are links to the programs and resulting documents discussed in this
+ talk:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+R Markdown File
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Output File
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Example1.Rmd"
+target "https://drive.google.com/file/d/1u4NYrkwSCYMni-hIdi1Nc7f5LHdK-JYK/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Example1.html"
+target "https://htmlpreview.github.io/?https://github.com/WilliamCooper/ReproducibleResearch/blob/master/_site/Example1.html"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Example2.Rmd"
+target "https://drive.google.com/file/d/12q3EhhxwJG6kls8bftttgob0bUEOJibG/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Example2.html"
+target "https://htmlpreview.github.io/?https://github.com/WilliamCooper/ReproducibleResearch/blob/master/_site/Example2.html"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Example3.Rmd"
+target "https://drive.google.com/file/d/1jyCzJZopvdsq4b8r7_6IAWVy-rCUnEL2/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Example3.html"
+target "https://htmlpreview.github.io/?https://github.com/WilliamCooper/ReproducibleResearch/blob/master/_site/Example3.html"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Example4.Rmd"
+target "https://drive.google.com/file/d/1Wbz07c2QUI8KrhqQfS0Yoxm2YLiZfFnA/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Example4.htm"
+target "https://htmlpreview.github.io/?https://github.com/WilliamCooper/ReproducibleResearch/blob/master/_site/Example4.html"
+literal "false"
+
+\end_inset
+
+l
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "RStudioAndPython.Rmd"
+target "https://drive.google.com/file/d/1r5orvuE5U7NCBbJdL6dv0P9qOWSAsF_p/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "RStudioAndPython.html"
+target "https://htmlpreview.github.io/?https://github.com/WilliamCooper/ReproducibleResearch/blob/master/_site/RStudioAndPython.html"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "FitCavityPressure.Rmd"
+target "https://drive.google.com/file/d/1u1HCEWREaFojqE5la7Sy9lmelgXojdjC/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "FitCavityPressure.pdf"
+target "https://drive.google.com/file/d/1If3Y3bP-HxLsRyD2TCEmHbsd_0ftDsyl/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "SensibleHeatFluxAMT.Rmd"
+target "https://drive.google.com/file/d/1yHfq6_0_xnqGO8tri34e1DAfrexGmrZW/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "SensibleHeatFluxAMT.pdf"
+target "https://drive.google.com/file/d/15sLxAJB19o_BBRNECsMJzI367xwo8R7O/view?usp=sharing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This presentation is available at 
+\begin_inset CommandInset href
+LatexCommand href
+name "this URL"
+target "https://github.com/WilliamCooper/ReproducibleResearch/blob/master/ReproducibleResearchPresentation.pdf"
+literal "false"
+
+\end_inset
+
+:
+\begin_inset Newline newline
+\end_inset
+
+https://github.com/WilliamCooper/ReproducibleResearch/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+blob/master/ReproducibleResearchPresentation.pdf
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
